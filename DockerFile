@@ -1,21 +1,15 @@
+#Select docker image
 FROM node:14-buster-slim AS deps
 
-ENV PORT 3000
+#select directory
+WORKDIR /app
 
-# Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+#Add all dependencies
+ADD package*.json ./ 
 
-# Installing dependencies
-COPY package*.json /usr/src/app/
+# install all dependencies 
 RUN npm install
+ADD . .
 
-# Copying source files
-COPY . /usr/src/app
-
-# Building app
-RUN npm run dev
-EXPOSE 3000
-
-# Running the app
-CMD "npm" "run" "dev"
+# run todoApp
+CMD npm run dev
