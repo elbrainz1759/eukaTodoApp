@@ -36,8 +36,10 @@ const EditTodoForm: React.FC = () => {
   async function getTodoDetail(id: string | string[]){
     const req: any = await todoService.getTodo(id);
     const data = req.data;
-    setText(data.todoItem.task)
-    setDateData(data.todoItem.dueDate)
+    if (typeof(data.todoItem) !== 'undefined') {
+      setText(data.todoItem.task)
+      setDateData(data.todoItem.dueDate)
+      }
     return data
     }
 
