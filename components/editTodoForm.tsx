@@ -30,8 +30,10 @@ const EditTodoForm: React.FC = () => {
   let [dueDate, setDueDate] = useState("");
   let [text, setText] = useState("");
   let [dateData, setDateData] = useState("");
-  
-  async function getTodoDetail(id?: string){
+  const taskId: string | string[] = router.query.id  !== undefined ? router.query.id : '';
+
+
+  async function getTodoDetail(id: string | string[]){
     const req: any = await todoService.getTodo(id);
     const data = req.data;
     setText(data.todoItem.task)
@@ -39,7 +41,7 @@ const EditTodoForm: React.FC = () => {
     return data
     }
 
-    getTodoDetail(router.query.id)
+    getTodoDetail(taskId)
   
 
   function getTask({ currentTarget: input }: { currentTarget: any }) {
@@ -58,7 +60,7 @@ const EditTodoForm: React.FC = () => {
       status: "Pending",
     };
     try{
-      const saveTodo = await todoService.editTodo(data, router.query.id);
+      const saveTodo = await todoService.editTodo(data, taskId);
       if (!saveTodo) toast.error("Error occured");
       toast.success("Todo Edited Successfully");
       addTodo();
@@ -77,7 +79,7 @@ const EditTodoForm: React.FC = () => {
               align="center"
               gutterBottom
               >
-    <p style={{color:"green"}}>Todo ID: {router.query.id}</p>
+    <p style={{color:"green"}}>Todo ID: {taskId}</p>
     </Typography>
               <CardContent>
                 <Grid container spacing={2}>

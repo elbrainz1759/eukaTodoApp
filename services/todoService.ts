@@ -16,7 +16,7 @@ import axios from 'axios';
              return(err)
          }
     },
-    getTodo : async(id?: string) => {
+    getTodo : async(id?: string | string[]) => {
         try {
             return await axios.get('http://localhost:3000/api/todo?id='+id);
          }catch(err) {
@@ -37,7 +37,7 @@ import axios from 'axios';
              return(err)
          }
     },
-    editTodo : async (todoItem: todoItem, id:string) => {
+    editTodo : async (todoItem: todoItem, id:string | string[]) => {
         
         try {
             return await axios.patch('/api/todo?id='+id, todoItem);
