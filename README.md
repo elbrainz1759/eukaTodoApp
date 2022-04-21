@@ -1,12 +1,14 @@
 
 ## Getting Started
 
-1. Install all project dependencies using :
+1. Download the EukaTodoApp or clone the project using its git link.
+
+2. Install all project dependencies using :
 
 ```bash
 npm install
 ```
-2. Run the development server:
+3. Run the development server:
 
 ```bash
 
@@ -14,7 +16,7 @@ npm run dev
 
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 
 ## For more information on how to deploy applications using NEXTJS:
