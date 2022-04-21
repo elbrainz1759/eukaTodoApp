@@ -30,14 +30,14 @@ const EditTodoForm: React.FC = () => {
   let [dueDate, setDueDate] = useState("");
   let [text, setText] = useState("");
   let [dateData, setDateData] = useState("");
-  const taskId: string | undefined = router.query.id;
+  const taskId: string = router.query.id  !== undefined ? router.query.id : '';
 
 
-  async function getTodoDetail(id: string){
-    const {data} = await todoService.getTodo(id);
+  async function getTodoDetail(id?: string){
+    const req: any = await todoService.getTodo(id);
+    const data = req.data;
     setText(data.todoItem.task)
     setDateData(data.todoItem.dueDate)
-  //  setDueDate(data.todoItem.dueDate)
     return data
     }
 
@@ -63,10 +63,7 @@ const EditTodoForm: React.FC = () => {
       const saveTodo = await todoService.editTodo(data, taskId);
       if (!saveTodo) toast.error("Error occured");
       toast.success("Todo Edited Successfully");
-      const req: any = await todoService.getTodoItems();
-      const getTodo = req.data;
-      const newTodos: todoItem[] | [] = getTodo.todoItems;
-      addTodo(newTodos);
+      addTodo();
       router.push("/");
     }catch(err){
       toast.error("Error occured, try again later")
@@ -78,10 +75,10 @@ const EditTodoForm: React.FC = () => {
           <Card style={{ maxWidth: "100%", marginBottom: "5%" }}>
             <CardActionArea>
             <Typography
-    variant="h6"
-    align="center"
-    gutterBottom
-    >
+              variant="h6"
+              align="center"
+              gutterBottom
+              >
     <p style={{color:"green"}}>Todo ID: {taskId}</p>
     </Typography>
               <CardContent>

@@ -7,14 +7,13 @@ interface todoItem {
 const fs = require('fs');
 const path = require('path');
 const db = require('./connect');
-const dbPath = path.resolve('./pages/api/database.json');
+const databaseLink = path.resolve('./pages/api/database.json');
 
 const writeDb = (obj:any) => {
     try {
-        fs.writeFileSync(dbPath, JSON.stringify(obj));
+        fs.writeFileSync(databaseLink, JSON.stringify(obj));
         return true;
-    }
-    catch(err) {
+    }catch(err) {
         console.log(err)
         return false;
     }
@@ -23,7 +22,6 @@ const writeDb = (obj:any) => {
 const config = {
     save: (item: todoItem): (todoItem | boolean) => {
         let todos : todoItem[] = db.todos;
-          console.log(todos);
       todos.push(item);
         if (writeDb(db)) return item;
         return false;
@@ -51,7 +49,6 @@ const config = {
             if (item.id == id) {
                 item.task = todoItem.task;
                 if(todoItem.dueDate !== "") item.dueDate = todoItem.dueDate;
-                item.status = todoItem.status
                 if(writeDb(db)) return item;
             }
         }
@@ -64,9 +61,9 @@ const config = {
         const todos : todoItem[] = db.todos;
         for (let item of todos) {
             if (item.id == id) {
-                let changer = "Pending";
-                if(item.status === "Pending"){
-                    changer = "Completed";
+                let changer = "Unfinished";
+                if(item.status === "Unfinished"){
+                    changer = "Done";
                 }
                 item.status = changer;
                 if(writeDb(db)) return true;

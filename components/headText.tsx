@@ -1,6 +1,6 @@
 import { Typography } from "@material-ui/core";
 
-const HeadText: React.FC = (props) => {
+const HeadText = ({title, subTitle}:{title:string, subTitle:string}) => {
     return(
         <>
     <Typography
@@ -9,7 +9,7 @@ const HeadText: React.FC = (props) => {
     gutterBottom
     style={{ marginBottom: "1em" }}
     >
-    {props.title}
+    {title}
     </Typography>
     <Typography
     variant="h6"
@@ -17,7 +17,7 @@ const HeadText: React.FC = (props) => {
     gutterBottom
     style={{ marginBottom: "1em" }}
     >
-    {props.subTitle}
+    {subTitle}
     </Typography>
     </>
     )

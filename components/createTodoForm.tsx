@@ -20,18 +20,15 @@ interface todoItem {
   status: string;
 }
 
-
 const CreateTodoForm: React.FC = () => {
   const todoContext = useContext(TodoContext);
   let { addTodo } = todoContext;
-
   let [task, setTask] = useState("");
   let [dueDate, setDueDate] = useState("");
 
   function getTask({ currentTarget: input }: { currentTarget: any }) {
     setTask(input.value);
   }
-
   function getDueDate({ currentTarget: input }: { currentTarget: any }) {
     setDueDate(input.value);
   }
@@ -39,21 +36,18 @@ const CreateTodoForm: React.FC = () => {
     const data: todoItem = {
       task,
       dueDate,
-      status: "Pending",
+      status: "Unfinished",
     };
     if(task === "") return toast.error("Task is compulsory");
-    try{
-      const saveTodo = await todoService.addTodo(data);
-      if (!saveTodo) toast.error("Error occured");
-      toast.info("Todo Saved Successfully");
-      const req: any = await todoService.getTodoItems();
-      const getTodo = req.data;
-      const newTodos: todoItem[] | [] = getTodo.todoItems;
-      addTodo(newTodos);
-    }catch(err){
-      toast.error(err)
-    }
-
+      try{
+        const saveTodo = await todoService.addTodo(data);
+        if (!saveTodo) toast.error("Error occured");
+        toast.info("Todo Saved Successfully");
+        addTodo();
+      }catch(err){
+        console.log(err)
+        toast.error("Error occured")
+      }
   }
 
   return (

@@ -38,7 +38,7 @@ const Tasks: React.FC = () => {
       for (let i = 0; i < todoItems.length; i++) {
         if (todoItems[i].id == id) {
           todoItems.splice(i, 1);
-          addTodo([...todoItems]);
+          addTodo();
           break;
         }
       }
@@ -49,10 +49,7 @@ const Tasks: React.FC = () => {
   async function handleStatusChange(id: string) {
     const statusApi = await todoService.changeStatus(id);
     if (statusApi) {
-      const req: any = await todoService.getTodoItems();
-      const getTodo = req.data;
-      const newTodos: todoItem[] | [] = getTodo.todoItems;
-      addTodo(newTodos);  
+      addTodo();  
       toast.success("Updated Successfully");
     }
   }
@@ -91,7 +88,7 @@ const Tasks: React.FC = () => {
               </CardActionArea>
               <CardActions>
                 <Button onClick={() => handleStatusChange(item.id!)} size="small" color="primary">
-                  {item.status ==="Completed" && <CheckBox />} {item.status ==="Pending" && <CheckBoxOutlineBlank />} {item.status}
+                  {item.status ==="Done" && <CheckBox />} {item.status ==="Unfinished" && <CheckBoxOutlineBlank />} {item.status}
                 </Button>
                 <Button onClick={() => router.push(`/modifyTask/${item.id}`)} size="small" color="primary">
                   <Edit /> Edit
