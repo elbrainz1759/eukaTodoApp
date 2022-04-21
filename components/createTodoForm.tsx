@@ -44,6 +44,8 @@ const CreateTodoForm: React.FC = () => {
         if (!saveTodo) toast.error("Error occured");
         toast.info("Todo Saved Successfully");
         if (addTodo) addTodo();
+        setTask("");
+        setDueDate("");
       }catch(err){
         console.log(err)
         toast.error("Error occured")
