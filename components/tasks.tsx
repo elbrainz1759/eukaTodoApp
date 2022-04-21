@@ -53,7 +53,7 @@ const Tasks: React.FC = () => {
       toast.success("Updated Successfully");
     }
   }
-
+  console.log(todoItems);
   if (todoItems?.length === 0)
     return (
       <Typography

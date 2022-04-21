@@ -1,8 +1,7 @@
-import { makeStyles } from "@material-ui/core/styles";
-
-import { Container, Grid, Typography } from "@material-ui/core";
-
 import styles from '../styles/Footer.module.css'
+import ImageLoader from "./../imageLoader";
+import eukaLogo from "../images/eukaPayLogo.jpg";
+import Image from 'next/image';
 
 
 const Footer = () => {
@@ -12,8 +11,19 @@ const Footer = () => {
       href="https://eukapay.com/"
       target="_blank"
       rel="noopener noreferrer"
+      style={{textAlign:"center"}}
+
     >
-      <span className={styles.logo}>
+        <span className={styles.logo}>
+        <Image
+                  loader={ImageLoader}
+                  unoptimized
+                  src={eukaLogo}
+                  alt="Euka Logo"
+                  width="50"
+                  height="50"
+                />
+                <br />
        EukaPay Todo App
       </span>
     </a>

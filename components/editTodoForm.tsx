@@ -63,7 +63,7 @@ const EditTodoForm: React.FC = () => {
       const saveTodo = await todoService.editTodo(data, taskId);
       if (!saveTodo) toast.error("Error occured");
       toast.success("Todo Edited Successfully");
-      addTodo();
+      if (addTodo) addTodo();
       router.push("/");
     }catch(err){
       toast.error("Error occured, try again later")

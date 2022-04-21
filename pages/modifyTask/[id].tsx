@@ -22,7 +22,7 @@ import {
     status: string;
   }
   
-  export const getServerSideProps: GetServerSideProps = async (context: any) => {
+ const getServerSideProps: GetServerSideProps = async (context: any) => {
     const req: any = await todoService.getTodoItems();
     const res = req.data;
     if (res.success) {

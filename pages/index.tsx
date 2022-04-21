@@ -22,7 +22,7 @@ interface todoItem {
   status: string;
 }
 
-export const getServerSideProps: GetServerSideProps = async (context: any) => {
+ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const req: any = await todoService.getTodoItems();
   const res = req.data;
   if (res.success) {
@@ -35,6 +35,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
     props: {},
   };
 };
+
 
 const Home: React.FC<{ tasks: todoItem[] | [] }> = ({ tasks }) => {
 
