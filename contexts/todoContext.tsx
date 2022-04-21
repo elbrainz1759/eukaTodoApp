@@ -4,7 +4,7 @@ import todoService from './../services/todoService';
 
 type ContextProps = {
     todoItems: todoItem[] | [],
-    addTodo: () => void,
+    addTodo?: () => void,
 
 }
 
@@ -25,12 +25,12 @@ type Props = { children: React.ReactNode } & ContextProps;
 export const TodoContext_ : React.FC<Props> = (props) => {
     const [todoItems, setTodoItems] = useState<todoItem[] | []>(props.todoItems);
     const addTodo = async () => {
-    const req: any = await todoService.getTodoItems();
-    const getTodo = req.data;
-    const newTodos: todoItem[] | [] = getTodo.todoItems;
-    setTodoItems(newTodos);
-    return true;
-}
+      const req: any = await todoService.getTodoItems();
+      const getTodo = req.data;
+      const newTodos: todoItem[] | [] = getTodo.todoItems;
+      setTodoItems(newTodos);
+      return "Success";
+    }
     
 
     return (

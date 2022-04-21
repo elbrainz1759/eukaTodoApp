@@ -43,7 +43,7 @@ const CreateTodoForm: React.FC = () => {
         const saveTodo = await todoService.addTodo(data);
         if (!saveTodo) toast.error("Error occured");
         toast.info("Todo Saved Successfully");
-        addTodo();
+        if (addTodo) addTodo();
       }catch(err){
         console.log(err)
         toast.error("Error occured")
@@ -99,8 +99,6 @@ const CreateTodoForm: React.FC = () => {
                       readOnly
                       type="button"
                       onClick={saveTask}
-                    
-                      
                     />
                     </Grid>
                   </Grid>

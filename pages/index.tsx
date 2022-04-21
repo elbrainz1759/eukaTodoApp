@@ -39,7 +39,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
 const Home: React.FC<{ tasks: todoItem[] | [] }> = ({ tasks }) => {
 
   return (
-      <TodoContext_ todoItems={tasks}>
+      <TodoContext_ todoItems={tasks} >
       <div className={styles.container}> 
         <ToastContainer />
         <Header /> 

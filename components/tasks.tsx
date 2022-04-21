@@ -38,7 +38,7 @@ const Tasks: React.FC = () => {
       for (let i = 0; i < todoItems.length; i++) {
         if (todoItems[i].id == id) {
           todoItems.splice(i, 1);
-          addTodo();
+          if (addTodo) addTodo();
           break;
         }
       }
@@ -49,7 +49,7 @@ const Tasks: React.FC = () => {
   async function handleStatusChange(id: string) {
     const statusApi = await todoService.changeStatus(id);
     if (statusApi) {
-      addTodo();  
+      if (addTodo) addTodo();
       toast.success("Updated Successfully");
     }
   }
